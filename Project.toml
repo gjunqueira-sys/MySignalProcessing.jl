@@ -1,0 +1,13 @@
+name = "MySignalProcessing"
+uuid = "189e31b1-644d-40fe-8ddf-c2cb98d78cdb"
+authors = ["Gil Junqueira"]
+version = "0.1.0"
+
+[compat]
+julia = "1.7"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]

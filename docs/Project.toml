@@ -1,0 +1,3 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+MySignalProcessing = "189e31b1-644d-40fe-8ddf-c2cb98d78cdb"
