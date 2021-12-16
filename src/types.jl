@@ -20,6 +20,12 @@ mutable struct signal
     end
 
 
+    function signal(A::Vector, n::Vector)
+        @assert length(A) == length(n) "lengths of A and n must be equal"
+        new(A, n)
+    end
+
+
 
 end
 
