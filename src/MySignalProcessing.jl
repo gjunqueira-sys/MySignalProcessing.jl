@@ -11,6 +11,7 @@ export impseq
 export signal
 export stepseq
 export sigshift
+export realexp
 
 
 """
@@ -106,5 +107,41 @@ end
 
 
 
-            
+"""
+    realexp(a::Real, n₀::Int , nf::Int)
+
+Function to generate a real exponential signal.
+
+Signal of the form:
+```math
+r(a, n) = a^n
+```
+
+
+# parameters
+    `a::Real` : real-valued parameter of the exponential
+    `n₀::Int` : start  the signal
+    `nf::Int` : stop  of the signal
+
+# returns
+    s::signal
+
+ """
+function realexp(a::Real, n₀::Int, nf::Int)
+    s = signal(0.0, n₀, nf); #constructor for initial signal
+
+    for x in 1:length(s.n)
+
+        s.A[x] = a^(s.n[x])
+       
+    end
+
+    return s
+    
+end
+ 
+
+
+
+
 end
