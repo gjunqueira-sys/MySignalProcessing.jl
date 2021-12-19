@@ -14,6 +14,7 @@ export sigshift
 export realexp
 export sigadd
 export sigmult
+export sigrand
 
 
 """
@@ -233,6 +234,30 @@ function sigmult(s₁::signal  , s₂::signal)
 
 end
 
+
+
+
+"""
+    sigrand(start::Int, stop::Int)
+
+Function to generate a random signal starting at sample position start and ending at sample position stop.
+The function generates a length N random sequence whose elements are uniformely distributed between 0 and 1.
+
+# parameters
+    `start::Int` : start  the sample positon signal
+    `stop::Int` : stop  of the sample positon  signal
+
+# returns
+    s::signal
+
+"""
+function sigrand(start::Int, stop::Int)
+    n = start:stop |> collect; # create the sample position vector
+    y = rand.(length(n)); # generate a random sequence
+    s = signal(y, n); #constructor for initial signal
+    return s
+    
+end
 
 
 
