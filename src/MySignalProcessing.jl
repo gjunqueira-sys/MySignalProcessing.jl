@@ -13,6 +13,7 @@ export stepseq
 export sigshift
 export realexp
 export sigadd
+export sigmult
 
 
 """
@@ -184,6 +185,56 @@ function sigadd(s₁::signal  , s₂::signal)
 
 
 end
+
+
+
+
+
+
+"""
+    sigmult(s1::signal, s2::signal)
+
+Function to multiply two signal s1 and s2.
+pls note that the signals must have the same length
+If sequences are of unequal lenghts or if the sample positions are 
+    different for equal-length sequences, the we cannot directly add
+        We have to first augment x1(n) and x2(n) , so that they have the same
+         position vector n (and hence the same length)
+
+# parameters
+    `s1::signal` : signal to be added
+    `s2::signal` : signal to be added
+
+# returns
+    `s::signal` : signal s1 * s2
+
+"""
+function sigmult(s₁::signal  , s₂::signal)
+
+    n₀ =min(minimum(s₁.n), minimum(s₂.n)) # find the minimum sample position
+    nf = max(maximum(s₁.n), maximum(s₂.n)) # find the maximum sample position
+    n=n₀:nf; # create the sample position vector
+
+    y₁ = signal(0.0, n₀, nf); #constructor for initial signal
+    y₂ = signal(0.0, n₀, nf); #constructor for initial signal
+
+    filter1 = findall((n .≥ minimum(s₁.n)) .& (n .≤ maximum(s₁.n)) .== 1)
+    filter2 = findall((n .≥ minimum(s₂.n)) .& (n .≤ maximum(s₂.n)) .== 1)
+
+    y₁.A[filter1] = s₁.A; # fill the signal with the values of s₁
+    y₂.A[filter2] = s₂.A; # fill the signal with the values of s₂
+
+    s = signal(0.0, n₀, nf); #constructor for initial signal
+    s.A = y₁.A .* y₂.A; # add the two signals
+
+    return s
+
+
+
+end
+
+
+
 
 
 
