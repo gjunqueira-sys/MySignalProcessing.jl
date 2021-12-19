@@ -15,6 +15,7 @@ export realexp
 export sigadd
 export sigmult
 export sigrand
+export sigscale
 
 
 """
@@ -259,6 +260,27 @@ function sigrand(start::Int, stop::Int)
     
 end
 
+
+
+"""
+    sigscale(s::signal, α::Real)
+
+Each signal sample is multiple by a scalar α
+
+# parameters
+    `s::signal` : signal to be scaled
+    `α::Real` : scalar
+
+# returns
+    `s::signal` : scaled signal
+"""
+function sigscale(s::signal, α::Real)
+
+    s1 = signal(s.A .* α, s.n); #constructor for initial signal
+    
+    return s1
+    
+end
 
 
 
