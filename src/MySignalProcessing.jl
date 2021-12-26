@@ -279,7 +279,7 @@ end
 
 
 """
-    sigscale(s::signal, α::Real)
+    _sigscale(s::signal, α::Real)
 
 Each signal sample is multiple by a scalar α
 
@@ -290,13 +290,33 @@ Each signal sample is multiple by a scalar α
 # returns
     `s::signal` : scaled signal
 """
-function sigscale(s::signal, α::Real)
+function _sigscale(s::signal, α::Real)
 
     s1 = signal(s.A .* α, s.n); #constructor for initial signal
     
     return s1
     
 end
+
+
+"""
+    sigscale(α::Real)
+
+Each signal sample is multiple by a scalar α
+
+# parameters
+    `α::Real` : scalar
+
+# returns
+    anonimous function that takes a signal as argument and returns 
+         scaled signal (designed to be composable)
+
+"""
+function sigscale(α::Real)
+    
+    return (sig -> _sigscale(sig, α))
+end
+
 
 
 """
