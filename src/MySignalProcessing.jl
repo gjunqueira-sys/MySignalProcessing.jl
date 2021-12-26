@@ -87,7 +87,7 @@ end
 
 
 """
-    sigshift(s::signal, m::Int)
+    _sigshift(s::signal, m::Int)
 
 Function to shift signal s by adding m to each element of s.n
 It implements y(n) = x(n-n₀)
@@ -101,7 +101,7 @@ It implements y(n) = x(n-n₀)
 # returns
     s'::signal shifted
 """
-function sigshift(s::signal, n₀::Int)
+function _sigshift(s::signal, n₀::Int)
     y = s.A;
     n = s.n .+ n₀;
     s = signal(y, n);
@@ -109,6 +109,21 @@ function sigshift(s::signal, n₀::Int)
     
 end
 
+"""
+    sigshift(n₀::Int)
+
+# parameters
+    `n₀::Int` : shift amount
+
+# returns
+    s:: anonimous  function that shifts a signal (designed to be composable)
+
+"""
+function sigshift(n₀::Int)
+    
+    return (sig -> _sigshift(sig, n₀))
+    
+end
 
 
 
