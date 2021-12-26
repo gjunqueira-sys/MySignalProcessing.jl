@@ -6,7 +6,7 @@ mutable struct signal
     A::Vector{Real} #Amplitude of the signal
     n::Vector{Real} #horizontal axis (discrete) of signal (in samples)
 
-    function signal(A::Real, n::Int) # construction of signal unit amplitude and 1000 samples 
+    function signal(A::Real, n::Int) # construction of signal with amplitude A and n samples starting from 0.
         A = A .*ones(n)
         n = [x for x in range(0, length=n)]
         new(A, n)
