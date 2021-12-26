@@ -16,6 +16,7 @@ export sigadd
 export sigmult
 export sigrand
 export sigscale
+export sigfold
 
 
 """
@@ -283,8 +284,26 @@ function sigscale(s::signal, α::Real)
 end
 
 
+"""
+    sigfold(s::signal)
 
+In this operation, each sample of x(n) is flipped around n=0 to obtain a folded sequence  y(n)
 
+y(n) = {x(-n)}
+
+# parameters
+    `s::signal` : signal to be folded
+
+# returns
+    `s::signal` : folded signal
+
+"""
+function  sigfold(s::signal)
+    s1 = signal(s.A, s.n); #constructor for initial signal
+    s1.A = reverse(s.A);
+    s1.n = -reverse(s.n);
+    return s1
+end
 
 
 end
