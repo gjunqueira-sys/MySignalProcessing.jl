@@ -52,6 +52,8 @@ signal(Real[1.5, 2.0, 3.0], Real[-1, 0, 1])
 
 # UNIT SAMPLE SEQUENCE
 
+- _impseq(start::Int, stop::Int)_
+
 ```julia
 using MySignalProcessing
 using Plots
@@ -64,6 +66,8 @@ plot(s.n, s.A, line =:stem, marker=:o)
 
 # UNIT STEP SEQUENCE
 
+- _stepseq(start::Int, stop::Int)_
+
 ```julia
 s = stepseq(-10, 10); # creates a unit step sequence from -10 to 10
 plot(s.n, s.A, line =:stem, marker=:o)
@@ -71,6 +75,8 @@ plot(s.n, s.A, line =:stem, marker=:o)
 <img src="src\step.png" alt="Step  Sequence" width="400"/>
 
 # Signal Shift
+
+- _sigshift(n₀::Int)_
 
 ```julia
 s = impseq(-10, 10);
