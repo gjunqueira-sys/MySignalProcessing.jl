@@ -7,6 +7,9 @@
 [![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
 [![ColPrac: Contributor's Guide on Collaborative Practices for Community Packages](https://img.shields.io/badge/ColPrac-Contributor's%20Guide-blueviolet)](https://github.com/SciML/ColPrac)
 
+# Jupyter Notebook
+
+For completed examples, pls see provided Jupyter notebook.
 # Installation
 
 ## This package is not yet release, so pls clone this repository:
@@ -46,4 +49,35 @@ s - signal([1.0, 2.0, 2.1], [-1, 0, 1]) # creates a signal from amplitude vector
 
 signal(Real[1.5, 2.0, 3.0], Real[-1, 0, 1])
 ```
+
+# UNIT SAMPLE SEQUENCE
+
+```julia
+using MySignalProcessing
+using Plots
+s = impseq(-10, 10); # creates a unit sample sequence from -10 to 10
+plot(s.n, s.A, line =:stem, marker=:o)
+
+```
+<img src="src\impulse.png" alt="Imp. Sequence" width="400"/>
+
+
+# UNIT STEP SEQUENCE
+
+```julia
+s = stepseq(-10, 10); # creates a unit step sequence from -10 to 10
+plot(s.n, s.A, line =:stem, marker=:o)
+```
+<img src="src\step.png" alt="Step  Sequence" width="400"/>
+
+# Signal Shift
+
+```julia
+s = impseq(-10, 10);
+sshifted = s |> sigshift(5) # generate impulse signal then pipe it to sigshift(5) , to shift it by 5 samples
+p1 = plot(s.n, s.A, line =:stem, marker=:o)
+p2 = plot(sshifted.n, sshifted.A, line =:stem, marker=:o)
+plot(p1,p2, layout=(1,2))
+```
+<img src="src\impulse_shifted.png" alt="Imp. Shifted" width="400"/>
 
