@@ -1,4 +1,4 @@
-module MySignalProcessing
+module MySignalProcessing|
 
 # Write your package code here.
 
@@ -17,6 +17,7 @@ export sigmult
 export sigrand
 export sigscale
 export sigfold
+export energy
 
 
 """
@@ -341,4 +342,28 @@ function  sigfold(s::signal)
 end
 
 
+"""
+    energy(s::signal)
+
+Calculate the energy of a signal
+The energy of a signal is given by the sum of the 
+    absolute squared values of the signal samples
+
+# parameters
+    `s::signal` : input signal
+
+# returns
+    `e::Real` : energy of the signal
+
+"""
+function energy(s::signal)
+    e = sum(abs.(s.A) .^ 2);
+    return e
 end
+    
+
+end
+
+
+
+
