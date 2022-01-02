@@ -6,6 +6,13 @@ module MySignalProcessing|
 include("types.jl")
 using .types: signal
 
+
+# imports 
+
+# Importiong packages that will then be extended.
+import Base.+
+import Base.*
+
 #exports
 export impseq
 export signal
@@ -18,6 +25,8 @@ export sigrand
 export sigscale
 export sigfold
 export energy
+export +
+export *
 
 
 """
@@ -206,6 +215,29 @@ function sigadd(s₁::signal  , s₂::signal)
 end
 
 
+"""
+    Base.+(s₁::signal  , s₂::signal)
+
+Extends Base.+ to add two signal objects together.
+
+# Arguments
+
+    `s₁::signal` : signal to be added
+    `s₂::signal` : signal to be added
+
+
+
+# Returns
+    `s::signal` : signal s1 + s2
+"""
+function +(s₁::signal  , s₂::signal)
+    s = sigadd(s₁ , s₂)
+    return s
+end
+    
+
+
+
 
 
 
@@ -250,6 +282,27 @@ function sigmult(s₁::signal  , s₂::signal)
 
 
 
+end
+
+
+
+"""
+    *(s₁::signal  , s₂::signal)
+
+Multiples two signal objects together.
+
+# Arguments
+
+    `s₁::signal` : signal to be multiplied
+    `s₂::signal` : signal to be Multiples
+
+# Returns
+    `s::signal` : signal s1 * s2
+
+"""
+function *(s₁::signal  , s₂::signal)
+    s = sigmult(s₁ , s₂)
+    return s
 end
 
 
