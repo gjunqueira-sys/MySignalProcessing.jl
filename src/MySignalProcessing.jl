@@ -373,6 +373,51 @@ end
 
 
 
+
+"""
+    *(s₁::signal  , α::Real)
+
+    scale signal by scalar.
+
+# Arguments
+
+    `s₁::signal` : signal to be multiplied
+    `α::Real` : scalar
+    
+
+# Returns
+    `s::signal` : signal s1 * α
+
+"""
+function *(s₁::signal  , α::Real)
+    s = s₁ |> sigscale(α);
+    return s
+end
+
+
+"""
+    *(α::Real, s₁::signal)
+
+scale signal by scalar.
+
+# Arguments
+
+    `s₁::signal` : signal to be multiplied
+    `α::Real` : scalar
+    
+
+# Returns
+    `s::signal` : signal s1 * α
+
+"""
+function *(α::Real, s₁::signal)
+    s = s₁ |> sigscale(α);
+    return s
+end
+
+
+
+
 """
     sigfold(s::signal)
 
