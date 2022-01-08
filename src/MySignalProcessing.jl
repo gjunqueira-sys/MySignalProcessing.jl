@@ -27,6 +27,7 @@ export sigfold
 export energy
 export +
 export *
+export sinseq
 
 
 """
@@ -459,6 +460,31 @@ function energy(s::signal)
     return e
 end
     
+
+"""
+    sinSeq(start::Int, stop::Int, ω::Real, φ::Real)
+
+Sinusoidal function
+
+# parameters
+    `start::Int` : start  the sample positon signal
+    `stop::Int` : stop  of the sample positon  signal
+    `ω::Real` : frequency of the sinusoid in radians
+    `φ::Real` : phase of the sinusoid, in radians
+
+# returns
+    s::sinusoidal signal
+
+"""
+function sinseq(start::Int, stop::Int, ω::Real, φ::Real= 0.0)
+    n = start:stop |> collect; # create the sample position vector
+    y = sin.(n .* ω .+ φ); # generate a sinusoidal sequence
+    s = signal(y, n); #constructor for initial signal
+    return s
+end
+
+
+
 
 end
 
