@@ -28,6 +28,7 @@ export energy
 export +
 export *
 export sinseq
+export sinseqmn
 
 
 """
@@ -479,6 +480,29 @@ Sinusoidal function
 function sinseq(start::Int, stop::Int, ω::Real, φ::Real= 0.0)
     n = start:stop |> collect; # create the sample position vector
     y = sin.(n .* ω .+ φ); # generate a sinusoidal sequence
+    s = signal(y, n); #constructor for initial signal
+    return s
+end
+
+
+"""
+    sinSeq(start::Int, stop::Int, M::Int,N::Int, φ::Real)
+
+Sinusoidal function with more specific constructor
+
+# parameters
+    `start::Int` : start  the sample positon signal
+    `stop::Int` : stop  of the sample positon  signal
+    `M::Int` : multiple of 2π
+    `N::Int` : number of periods before pattern repeats itself
+
+# returns
+    s::sinusoidal signal
+
+"""
+function sinseqmn(start::Int, stop::Int, M::Int,N::Int, φ::Real= 0.0)
+    n = start:stop |> collect; # create the sample position vector
+    y = sin.(n .* ((M / N)*2π .+ φ)); # generate a sinusoidal sequence
     s = signal(y, n); #constructor for initial signal
     return s
 end
