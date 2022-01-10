@@ -28,7 +28,7 @@ export energy
 export +
 export *
 export sinseq
-export sinseqmn
+export sinseqmn 
 
 
 """
