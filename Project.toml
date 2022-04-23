@@ -4,6 +4,7 @@ authors = ["Gil Junqueira"]
 version = "0.1.0"
 
 [deps]
+DSP = "717857b8-e6f2-59f4-9121-6e50c889abd2"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 DocumenterTools = "35a29f4d-8980-5a13-9543-d66fff28ecb8"
 Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"

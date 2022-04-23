@@ -12,6 +12,7 @@ using .types: signal
 # Importiong packages that will then be extended.
 import Base.+
 import Base.*
+import DSP
 
 #exports
 export impseq
@@ -29,6 +30,7 @@ export +
 export *
 export sinseq
 export sinseqmn 
+export conv
 
 
 """
@@ -506,6 +508,42 @@ function sinseqmn(start::Int, stop::Int, M::Int,N::Int, φ::Real= 0.0)
     s = signal(y, n); #constructor for initial signal
     return s
 end
+
+
+
+
+"""
+    conv(s₁::signal, s₂::signal)
+
+Convolution function
+
+# parameters
+    `s₁::signal` : input signal 
+    `s₂::signal` : impulse response signal
+
+# returns
+    s::convolution signal output
+
+"""
+function conv(s₁::signal, s₂::signal)
+    n₁ = s₁.n;
+    n₂ = s₂.n;
+    A₁ = convert(Array{Float64,1}, s₁.A) #conv requires more specific type
+    A₂ = convert(Array{Float64,1}, s₂.A) #conv requires more specific type
+  
+    Nyb = n₁[1] + n₂[1];
+    Nye = n₁[length(A₁)] + n₂[length(A₂)];
+  
+    ny = collect(Nyb: Nye);
+    y = DSP.conv(A₁, A₂);
+  
+    return signal(y, ny);
+  end
+  
+
+
+
+
 
 
 
