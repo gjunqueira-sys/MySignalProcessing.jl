@@ -21,6 +21,10 @@ pkg> activate .
 
 pkg> instantiate
 ```
+For Applications examples, pls see:
+
+[https://gjunqueira-sys.github.io/J-J-Engineering-Blog/](https://gjunqueira-sys.github.io/J-J-Engineering-Blog/)
+
 
 # Creating a signal (Constructors)
 
