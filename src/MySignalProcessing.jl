@@ -31,6 +31,7 @@ export *
 export sinseq
 export sinseqmn 
 export conv
+export cexp
 
 
 """
@@ -541,7 +542,29 @@ function conv(s₁::signal, s₂::signal)
   end
   
 
-
+  """
+  function cexp(A::Vector, k, N)
+  
+      params:
+          - A: Vector of amplitudes
+          - n: element index within each Vector, from 0 .. N-1
+          - k: index indicating each vector , from 0 .. N-1
+          - N: dimension of signal (number of vectors) 
+  
+      returns:
+          - complex exponential signal
+  
+  """
+  function cexp(A::Vector, k, N = 64)
+      
+      n = [n for n in range(0, N-1)]
+  
+      w = [exp(((2pi/64)*im)*n*k) for n in range(0, N-1)]
+      s = A .*w
+  
+      return signal(s, n)
+      
+  end
 
 
 
